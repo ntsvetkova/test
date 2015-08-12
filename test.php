@@ -1,6 +1,20 @@
 <?php
 
 /**
+ * Interface cRequest
+ */
+interface cRequest {
+
+    public function getEndPoint();
+    public function getFormat();
+    public function getApiKey();
+    public function buildRequest($method, $paramName, $paramValue);
+    public function sendRequest($strReq);
+    public function display(flickrPhoto $photo);
+
+}
+
+/**
  * Class flickrPhoto
  */
 class flickrPhoto {
@@ -101,7 +115,7 @@ class flickrPhoto {
 /**
  * Class request
  */
-class request {
+class request implements cRequest {
 
     private $endPoint = "https://api.flickr.com/services/rest/";
     private $apiKey = "3bd97586d21ffcffe1931f53c2883652";
@@ -193,9 +207,9 @@ class request {
     }
 
     /**
-     * @param $photo
+     * @param flickrPhoto $photo
      */
-    public function display($photo) {
+    public function display(flickrPhoto $photo) {
         echo "<div class='cell'>
                 <a class='large' href='" . $photo->getSrcL() . "'>
                     <div class='img' style='background-image:url(" . $photo->getSrcT() . ");'></div>
