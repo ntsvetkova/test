@@ -197,7 +197,7 @@ class request {
      */
     public function display($photo) {
         echo "<div class='cell'>
-                <a class='large'>
+                <a class='large' href='" . $photo->getSrcL() . "'>
                     <div class='img' style='background-image:url(" . $photo->getSrcT() . ");'></div>
                     <div class='title'>" . $photo->getTitle() . "</div>
                 </a>
