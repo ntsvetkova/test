@@ -8,6 +8,8 @@ class flickrPhoto {
     protected $id;
     protected $owner;
     protected $title;
+    protected $srcT;
+    protected $srcL;
 
     /**
      * @param $id
@@ -18,6 +20,38 @@ class flickrPhoto {
         $this->id = $id;
         $this->owner = $owner;
         $this->title = $title;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSrcL()
+    {
+        return $this->srcL;
+    }
+
+    /**
+     * @param mixed $srcL
+     */
+    public function setSrcL($srcL)
+    {
+        $this->srcL = $srcL;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSrcT()
+    {
+        return $this->srcT;
+    }
+
+    /**
+     * @param mixed $srcT
+     */
+    public function setSrcT($srcT)
+    {
+        $this->srcT = $srcT;
     }
 
     /**
@@ -73,6 +107,7 @@ class request {
     private $apiKey = "3bd97586d21ffcffe1931f53c2883652";
     private $format = "json";
     public $strReq = "";
+    public $photo;
 
     /**
      * @return string
@@ -100,26 +135,98 @@ class request {
      * @param $paramName
      * @param $paramValue
      */
-    public function sendRequest($method, $paramName, $paramValue) {
+    public function buildRequest($method, $paramName, $paramValue) {
         $strReq = $this->getEndPoint() . "?method=" . $method . "&format=" . $this->getFormat() . "&api_key=" . $this->getApiKey() . "&" . $paramName . "=" . $paramValue;
+        $this->sendRequest($strReq);
+    }
+
+    /**
+     * @param $strReq
+     */
+    public function sendRequest($strReq) {
         $req = curl_init($strReq);
         curl_setopt($req, CURLOPT_RETURNTRANSFER, 1);   // CURLOPT_RETURNTRANSFER - returns a string instead of direct output
         $data = substr(curl_exec($req), 14, -1);    // cutting jsonFlickrApi()
-        $obj = json_decode($data);  //converts a JSON encoded string into a PHP variable
-        var_dump($obj);     // NOT NECESSARY
+        $obj = json_decode($data)  //converts a JSON encoded string into a PHP variable
+            or die("Unable to decode data");
+
+        switch (json_last_error()) {
+           case JSON_ERROR_DEPTH:
+                echo ' - Max depth';
+                break;
+            case JSON_ERROR_STATE_MISMATCH:
+                echo ' - Error state mismatch';
+                break;
+            case JSON_ERROR_CTRL_CHAR:
+                echo ' - Control char error';
+                break;
+            case JSON_ERROR_SYNTAX:
+                echo ' - Syntax error';
+                break;
+            case JSON_ERROR_UTF8:
+                echo ' - UTF8 error';
+                break;
+            default:
+               break;
+        }
+
+    //    var_dump($obj);     // NOT NECESSARY
         curl_close($req);   // close a cURL session
-        $arr = array();
-        for ($i = 0; $i < count($obj->photos->photo); $i++) {
-            $arr[$i] = new flickrPhoto($obj->photos->photo[$i]->id, $obj->photos->photo[$i]->owner, $obj->photos->photo[$i]->title);
-        }
-        foreach ($arr as $value) {
-            echo $value->getId() . "\n";
-        }
-     //   print_r($arr);
-        return;
+
+        if (property_exists($obj, "photos"))
+            for ($i = 0; $i < count($obj->photos->photo); $i++) {
+                $this->photo = new flickrPhoto($obj->photos->photo[$i]->id, $obj->photos->photo[$i]->owner, $obj->photos->photo[$i]->title);
+                $this->buildRequest("flickr.photos.getSizes", "photo_id", $this->photo->getId());
+            }
+        else
+            if (property_exists($obj, "sizes")) {
+                $this->photo->setSrcL($obj->sizes->size[count($obj->sizes->size) - 1]->source);
+                for ($i = 0; $i < count($obj->sizes->size); $i++)
+                    if ($obj->sizes->size[$i]->label == "Thumbnail")
+                        $this->photo->setSrcT($obj->sizes->size[$i]->source);
+                $this->display($this->photo);
+            //    var_dump($this->photo);
+
+            }
+            else
+                echo "Unknown API method";
+    }
+
+    /**
+     * @param $photo
+     */
+    public function display($photo) {
+        echo "<div class='cell'>
+                <a class='large'>
+                    <div class='img' style='background-image:url(" . $photo->getSrcT() . ");'></div>
+                    <div class='title'>" . $photo->getTitle() . "</div>
+                </a>
+                <a id='arrow' target='_blank' href='http://www.flickr.com/photos/" . $photo->getOwner() . "/" . $photo->getId() . "'> » </a>
+                <div class='clearfix'></div>
+              </div>";
+    //    var_dump($photo);
     }
 
 }
 
-$req = new request();
-$req->sendRequest("flickr.photos.getRecent","per_page",3);
+echo "<!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset='utf-8'>
+        <title>Flickr Photos</title>
+        <link rel='stylesheet' href='css/main.css'>
+      </head>
+      <body>
+    	<div class='header'>
+    		<h1>flickr photos</h1>
+    	</div>
+		<div class='wrapper'>
+			<div id='table'></div>";
+
+$req = new request();                                               // cURL request
+$req->buildRequest("flickr.photos.getRecent","per_page",3);
+
+echo "</div>
+	  <div id='photo_large'></div>
+    </body>
+</html>";
