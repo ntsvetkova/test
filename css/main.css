@@ -23,6 +23,7 @@ h1 {
 
 .wrapper #table {
     width: 100%;
+    text-align: center;
 }
 
 .wrapper .cell {

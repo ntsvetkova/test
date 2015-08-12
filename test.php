@@ -221,7 +221,7 @@ echo "<!DOCTYPE html>
     		<h1>flickr photos</h1>
     	</div>
 		<div class='wrapper'>
-			<div id='table'></div>";
+			<div id='table'>";
 
 $req = new request();                                               // cURL request
 $req->buildRequest("flickr.photos.getRecent","per_page",3);
