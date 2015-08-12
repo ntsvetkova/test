@@ -115,7 +115,7 @@ class request {
         foreach ($arr as $value) {
             echo $value->getId() . "\n";
         }
-      //  print_r($arr);
+        print_r($arr);
         return;
     }
 
