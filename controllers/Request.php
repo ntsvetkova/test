@@ -1,7 +1,7 @@
 <?php
 
 require_once '../models/FlickrPhoto.php';
-require_once '../models/RequestParameters.php';
+//require_once '../models/RequestParameters.php';
 
 /**
  * Constants for json_last_error()
@@ -21,30 +21,30 @@ class Request //implements RequestInterface
     public $strReq = "";
     public $photo;
 
-//    private $endPoint = "https://api.flickr.com/services/rest/";
-//    private $apiKey = "3bd97586d21ffcffe1931f53c2883652";
-//    private $format = "json";
-//
-//    /**
-//     * @return string
-//     */
-//    public function getEndPoint() {
-//        return $this->endPoint;
-//    }
-//
-//    /**
-//     * @return string
-//     */
-//    public function getFormat() {
-//        return $this->format;
-//    }
-//
-//    /**
-//     * @return string
-//     */
-//    public function getApiKey() {
-//        return $this->apiKey;
-//    }
+    private $endPoint = "https://api.flickr.com/services/rest/";
+    private $apiKey = "3bd97586d21ffcffe1931f53c2883652";
+    private $format = "json";
+
+    /**
+     * @return string
+     */
+    public function getEndPoint() {
+        return $this->endPoint;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormat() {
+        return $this->format;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApiKey() {
+        return $this->apiKey;
+    }
 
     /**
      * @param $method
@@ -52,10 +52,10 @@ class Request //implements RequestInterface
      * @param $paramValue
      */
     public function buildRequest($method, $paramName, $paramValue) {
-        $request = new RequestParameters();
-        var_dump($request);
-        $strReq = $request->getEndPoint() . "?method=" . urlencode($method) . "&format=" . $request->getFormat() . "&api_key=" . $request->getApiKey() . "&" . urlencode($paramName) . "=" . urlencode($paramValue);
-      //  $strReq = $this->getEndPoint() . "?method=" . urlencode($method) . "&format=" . $this->getFormat() . "&api_key=" . $this->getApiKey() . "&" . urlencode($paramName) . "=" . urlencode($paramValue);
+//        $request = new RequestParameters();
+//        var_dump($request);
+//        $strReq = $request->getEndPoint() . "?method=" . urlencode($method) . "&format=" . $request->getFormat() . "&api_key=" . $request->getApiKey() . "&" . urlencode($paramName) . "=" . urlencode($paramValue);
+        $strReq = $this->getEndPoint() . "?method=" . urlencode($method) . "&format=" . $this->getFormat() . "&api_key=" . $this->getApiKey() . "&" . urlencode($paramName) . "=" . urlencode($paramValue);
     //    var_dump($strReq);
         $this->sendRequest($strReq);
     }
