@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flickr Photos</title>
+    <link rel='stylesheet' href='./css/main.css'>
+</head>
+<body>
+    <div class='header'>
+        <h1>flickr photos</h1>
+    </div>
+    <div class='wrapper'>
+        <div id='table'>
+
+            <?require '../controllers/Request.php';
+            $req = new Request();
+            $req->buildRequest("flickr.photos.getRecent","per_page",3);>
+
+        </div>
+        <div id='photo_large'></div>
+    </div>
+</body>
+</html>
