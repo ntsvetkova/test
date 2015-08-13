@@ -16,7 +16,7 @@ echo "<!DOCTYPE html>
 //{{hjhjh}}
 
 require '../controllers/Request.php';
-$req = new Request();                                               // cURL request
+$req = new Request();
 $req->buildRequest("flickr.photos.getRecent","per_page",3);
 
 echo "</div>
