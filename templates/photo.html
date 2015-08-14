@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>flickr photos</title>
-    <link rel='stylesheet' href='../css/main.css'>
-</head>
-<body>
-<div class='header'>
-    <h1>flickr photos</h1>
-</div>
-<div class='wrapper'>
-    <div id='table'>
-        {{$photo}.getId()}
 
-    </div>
-</div>
-</body>
-</html>
+        <!--{FOREACH}-->
+            <div class='cell'>
+            <a class='large' href={SRCLARGE}>
+                <div class='img' style='background-image:url({SRCTHUMBNAIL})'></div>
+                <div class='title'>{TITLE}</div>
+            </a>
+            <a id='arrow' target='_blank' href='http://www.flickr.com/photos/{OWNER}/{ID}'> » </a>
+            <div class='clearfix'></div>
+        <!--{/FOREACH}-->
+        </div>

@@ -5,17 +5,22 @@ $req = new Request();
 $req->buildRequest("flickr.photos.getRecent","per_page",3);
 
 /**
- * @param FlickrPhoto $photo
+ * @param PhotoCollection $photos
  */
-function display($photos) {
-    include_once '../templates/photo.html';
-    var_dump($photos);
-//    echo "<div class='cell'>
-//                <a class='large' href='" . $photo->getSrcLarge() . "'>
-//                    <div class='img' style='background-image:url(" . $photo->getSrcThumbnail() . ");'></div>
-//                    <div class='title'>" .  $photo->getTitle() . "</div>
-//                </a>
-//                <a id='arrow' target='_blank' href='http://www.flickr.com/photos/" . urlencode($photo->getOwner()) . "/" . urlencode($photo->getId()) . "'> » </a>
-//                <div class='clearfix'></div>
-//              </div>";
+function display(PhotoCollection $photos) {
+
+    include_once '../templates/header.html';
+//    var_dump($photos);
+    foreach($photos->items as $photo) {
+//        var_dump($photo);
+        $tpl = file_get_contents('../templates/photo.html');
+        $tpl = str_replace('{SRCLARGE}', $photo->getSrcLarge(), $tpl);
+        $tpl = str_replace('{SRCTHUMBNAIL}', $photo->getSrcThumbnail(), $tpl);
+        $tpl = str_replace('{TITLE}', $photo->getTitle(), $tpl);
+        $tpl = str_replace('{OWNER}', urlencode($photo->getOwner()), $tpl);
+        $tpl = str_replace('{ID}', urlencode($photo->getId()), $tpl);
+        echo $tpl;
+    }
+    include_once '../templates/footer.html';
+
 }

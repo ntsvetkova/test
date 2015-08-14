@@ -3,6 +3,7 @@
 require_once 'RequestInterface.php';
 require_once '../models/FlickrPhoto.php';
 require_once '../models/RequestParameters.php';
+require_once '../models/PhotoCollection.php';
 
 /**
  * Constants for json_last_error()
@@ -21,6 +22,7 @@ class Request implements RequestInterface
 
     public $strReq = "";
     public $photo;
+    public $arrPhotos;
 
     /**
      * @param $method
@@ -68,10 +70,13 @@ class Request implements RequestInterface
         curl_close($req);   // close a cURL session
 
         if (property_exists($obj, "photos")) {
+            $this->arrPhotos = new PhotoCollection();
             for ($i = 0; $i < count($obj->photos->photo); $i++) {
                 $this->photo = new FlickrPhoto($obj->photos->photo[$i]->id, $obj->photos->photo[$i]->owner, $obj->photos->photo[$i]->title);
                 $this->buildRequest("flickr.photos.getSizes", "photo_id", $this->photo->getId());
             }
+//            var_dump($this->arrPhotos);
+            display($this->arrPhotos);
         }
         else if (property_exists($obj, "sizes")) {
             $this->photo->setSrcLarge($obj->sizes->size[count($obj->sizes->size) - 1]->source);
@@ -80,13 +85,16 @@ class Request implements RequestInterface
                     $this->photo->setSrcThumbnail($obj->sizes->size[$i]->source);
                 }
             }
-            display($this->photo);
+            $this->arrPhotos->add($this->photo);
+
+          //  display($this->photo);
          //    $this->display($this->photo);
-            //    var_dump($this->photo);
+//            var_dump($this->photo);
         }
         else {
             echo "Unknown API method";
         }
+
     }
 
     /**
