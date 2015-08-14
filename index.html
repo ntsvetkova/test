@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Flickr Photos</title>
-    <link rel='stylesheet' href='./css/main.css'>
+    <title>test</title>
+    <link rel='stylesheet' href='css/main.css'>
 </head>
 <body>
     <div class='header'>
@@ -11,11 +11,7 @@
     </div>
     <div class='wrapper'>
         <div id='table'>
-
-            <?require '../controllers/Request.php';
-            $req = new Request();
-            $req->buildRequest("flickr.photos.getRecent","per_page",3);>
-
+            <!--{include('./view/display.php')}-->
         </div>
         <div id='photo_large'></div>
     </div>
