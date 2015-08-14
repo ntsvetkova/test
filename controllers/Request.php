@@ -87,9 +87,6 @@ class Request implements RequestInterface
             }
             $this->arrPhotos->add($this->photo);
 
-          //  display($this->photo);
-         //    $this->display($this->photo);
-//            var_dump($this->photo);
         }
         else {
             echo "Unknown API method";
