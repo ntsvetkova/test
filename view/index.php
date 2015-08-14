@@ -14,8 +14,10 @@ echo "<!DOCTYPE html>
 		<div class='wrapper'>
 			<div id='table'>";
 //{{hjhjh}}
-
 require '../controllers/Request.php';
+//require '../models/RequestParameters.php';
+//$request = new RequestParameters();
+//var_dump($request);
 $req = new Request();
 $req->buildRequest("flickr.photos.getRecent","per_page",3);
 
