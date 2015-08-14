@@ -1,9 +1,11 @@
 <?php
 
+require_once 'Photo.php';
+
 /**
  * Class FlickrPhoto
  */
-class FlickrPhoto
+class FlickrPhoto extends Photo
 {
 
     protected $id;
@@ -21,38 +23,6 @@ class FlickrPhoto
         $this->id = $id;
         $this->owner = $owner;
         $this->title = $title;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSrcLarge()
-    {
-        return $this->srcLarge;
-    }
-
-    /**
-     * @param mixed $srcLarge
-     */
-    public function setSrcLarge($srcLarge)
-    {
-        $this->srcLarge = $srcLarge;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSrcThumbnail()
-    {
-        return $this->srcThumbnail;
-    }
-
-    /**
-     * @param mixed $srcThumbnail
-     */
-    public function setSrcThumbnail($srcThumbnail)
-    {
-        $this->srcThumbnail = $srcThumbnail;
     }
 
     /**
