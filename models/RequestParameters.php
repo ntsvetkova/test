@@ -10,6 +10,16 @@ class RequestParameters implements RequestParametersInterface
     private $endPoint = "https://api.flickr.com/services/rest/";
     private $apiKey = "3bd97586d21ffcffe1931f53c2883652";
     private $format = "json";
+    private static $instance;
+
+    private function __construct() {}
+
+    public static function getInstance() {
+        if (empty(self::$instance)) {
+            self::$instance = new RequestParameters();
+        }
+        return self::$instance;
+    }
 
     /**
      * @return string

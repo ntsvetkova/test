@@ -30,7 +30,7 @@ class Request implements RequestInterface
      * @param $paramValue
      */
     public function buildRequest($method, $paramName, $paramValue) {
-        $request = new RequestParameters();
+        $request = RequestParameters::getInstance();
         $strReq = $request->getEndPoint() . "?method=" . urlencode($method) . "&format=" . $request->getFormat() . "&api_key=" . $request->getApiKey() . "&" . urlencode($paramName) . "=" . urlencode($paramValue);
 //            var_dump($strReq);
         $this->sendRequest($strReq);
