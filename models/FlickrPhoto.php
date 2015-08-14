@@ -1,12 +1,15 @@
 <?php
 
 require_once 'Photo.php';
+require_once 'Titled.php';
 
 /**
  * Class FlickrPhoto
  */
 class FlickrPhoto extends Photo
 {
+
+    use Titled;
 
     protected $id;
     protected $owner;
@@ -58,13 +61,6 @@ class FlickrPhoto extends Photo
      */
     public function setTitle($title) {
         $this->title = $title;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTitle() {
-        return $this->title;
     }
 
 }
