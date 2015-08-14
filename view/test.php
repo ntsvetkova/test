@@ -14,9 +14,13 @@ echo "<!DOCTYPE html>
 		<div class='wrapper'>
 			<div id='table'>";
 //{{hjhjh}}
-require '../controllers/Request.php';
-$req = new Request();
-$req->buildRequest("flickr.photos.getRecent","per_page",3);
+
+//require '../controllers/Request.php';
+//$req = new Request();
+//$req->buildRequest("flickr.photos.getRecent","per_page",3);
+
+require_once 'display.php';
+
 echo "</div>
 	  <div id='photo_large'></div>
     </body>

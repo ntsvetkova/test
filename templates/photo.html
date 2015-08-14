@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>flickr photos</title>
-    <link rel='stylesheet' href='css/main.css'>
+    <link rel='stylesheet' href='../css/main.css'>
 </head>
 <body>
 <div class='header'>
@@ -11,12 +11,9 @@
 </div>
 <div class='wrapper'>
     <div id='table'>
-
-       <?php include './view/display.php'; ?>
-
+        {{$photo}.getId()}
 
     </div>
-    <div id='photo_large'></div>
 </div>
 </body>
 </html>

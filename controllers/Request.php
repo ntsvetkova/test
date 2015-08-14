@@ -30,7 +30,7 @@ class Request implements RequestInterface
     public function buildRequest($method, $paramName, $paramValue) {
         $request = new RequestParameters();
         $strReq = $request->getEndPoint() . "?method=" . urlencode($method) . "&format=" . $request->getFormat() . "&api_key=" . $request->getApiKey() . "&" . urlencode($paramName) . "=" . urlencode($paramValue);
-        //    var_dump($strReq);
+//            var_dump($strReq);
         $this->sendRequest($strReq);
     }
 
@@ -80,7 +80,8 @@ class Request implements RequestInterface
                     $this->photo->setSrcThumbnail($obj->sizes->size[$i]->source);
                 }
             }
-            $this->display($this->photo);
+            display($this->photo);
+         //    $this->display($this->photo);
             //    var_dump($this->photo);
         }
         else {
@@ -92,15 +93,15 @@ class Request implements RequestInterface
      * @param FlickrPhoto $photo
      * @throws Exception
      */
-    public function display(FlickrPhoto $photo) {
-        echo "<div class='cell'>
-                <a class='large' href='" . $photo->getSrcLarge() . "'>
-                    <div class='img' style='background-image:url(" . $photo->getSrcThumbnail() . ");'></div>
-                    <div class='title'>" .  $photo->getTitle() . "</div>
-                </a>
-                <a id='arrow' target='_blank' href='http://www.flickr.com/photos/" . urlencode($photo->getOwner()) . "/" . urlencode($photo->getId()) . "'> » </a>
-                <div class='clearfix'></div>
-              </div>";
+//    public function display(FlickrPhoto $photo) {
+//        echo "<div class='cell'>
+//                <a class='large' href='" . $photo->getSrcLarge() . "'>
+//                    <div class='img' style='background-image:url(" . $photo->getSrcThumbnail() . ");'></div>
+//                    <div class='title'>" .  $photo->getTitle() . "</div>
+//                </a>
+//                <a id='arrow' target='_blank' href='http://www.flickr.com/photos/" . urlencode($photo->getOwner()) . "/" . urlencode($photo->getId()) . "'> » </a>
+//                <div class='clearfix'></div>
+//              </div>";
         /*   throw new Exception('!');
            try {
 
@@ -109,6 +110,6 @@ class Request implements RequestInterface
                echo $e->getMessage();
            } */
         //    var_dump($photo);
-    }
+//    }
 
 }
