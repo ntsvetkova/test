@@ -16,7 +16,8 @@ class RequestParameters implements RequestParametersInterface
 
     public static function getInstance() {
         if (empty(self::$instance)) {
-            self::$instance = new RequestParameters();
+            $classname = __CLASS__;
+            self::$instance = new $classname;
         }
         return self::$instance;
     }
