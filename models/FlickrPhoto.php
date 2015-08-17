@@ -6,6 +6,7 @@ require_once 'Titled.php';
 
 /**
  * Class FlickrPhoto
+ * @package Test
  */
 class FlickrPhoto extends Photo
 {
@@ -13,15 +14,15 @@ class FlickrPhoto extends Photo
     use Titled;
 
     /**
-     * @var
+     * @var string
      */
     protected $id;
     /**
-     * @var
+     * @var string
      */
     protected $owner;
     /**
-     * @var
+     * @var string
      */
     protected $title;
     /**

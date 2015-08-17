@@ -5,6 +5,7 @@ require_once 'RequestParametersInterface.php';
 
 /**
  * Class RequestParameters
+ * @package Test
  */
 class RequestParameters implements RequestParametersInterface
 {

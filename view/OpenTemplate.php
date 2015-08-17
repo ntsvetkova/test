@@ -5,6 +5,7 @@ require_once '../settings.php';
 
 /**
  * Class OpenTemplate
+ * @package Test
  */
 class OpenTemplate
 {
@@ -23,16 +24,16 @@ class OpenTemplate
     private static $instance;
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     private function __construct() {
         if (!file_get_contents(self::$source)) {
-            throw new Exception('Error: template can not be opened');
+            throw new \Exception('Template can not be opened');
         }
         try {
             $this->tpl = file_get_contents(self::$source);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             echo $e->getMessage();
         }
     }

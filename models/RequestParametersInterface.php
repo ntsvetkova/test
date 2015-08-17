@@ -1,6 +1,10 @@
 <?php
 namespace Test;
 
+/**
+ * Interface RequestParametersInterface
+ * @package Test
+ */
 interface RequestParametersInterface
 {
     /**

@@ -3,6 +3,7 @@ namespace Test;
 
 /**
  * Class Photo
+ * @package Test
  */
 class Photo
 {

@@ -3,6 +3,7 @@ namespace Test;
 
 /**
  * Interface RequestInterface
+ * @package Test
  */
 interface RequestInterface
 {

@@ -3,6 +3,7 @@ namespace Test;
 
 /**
  * Class Titled
+ * @package Test
  */
 trait Titled
 {

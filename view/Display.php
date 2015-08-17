@@ -7,6 +7,7 @@ require_once 'OpenTemplate.php';
 
 /**
  * Class Display
+ * @package Test
  */
 class Display
 {
