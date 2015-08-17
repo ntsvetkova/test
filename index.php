@@ -1,6 +1,5 @@
 <?php
 namespace Test;
-use Test\Photo;
 
 require_once '/var/www/main/test.com/web/settings.php';
 include_once HEADER_TPL;
