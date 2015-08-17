@@ -18,8 +18,7 @@ class Display
     public function __construct() {}
 
     /**
-     * @param PhotoCollection $photos
-     * @throws Exception
+     * @param PhotoCollection $photos\
      */
     public function display(PhotoCollection $photos) {
 

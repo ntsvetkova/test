@@ -2,6 +2,7 @@
 namespace Test;
 
 require_once '../settings.php';
+require_once '../models/TemplateLoadingException.php';
 
 /**
  * Class OpenTemplate
@@ -24,10 +25,21 @@ class OpenTemplate
     private static $instance;
 
     /**
-     * @throws ErrorException
+     * @throws TemplateLoadingException
      */
     private function __construct() {
-        $this->tpl = file_get_contents(self::$source);
+        try {
+            if (!file_exists(self::$source)) {
+                throw new TemplateLoadingException("No file");
+            }
+            else {
+                $this->tpl = file_get_contents(self::$source);
+            }
+        }
+        catch (TemplateLoadingException $e) {
+            echo $e;
+        }
+
     }
 
     /**
