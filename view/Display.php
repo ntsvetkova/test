@@ -18,7 +18,7 @@ class Display
     public function __construct() {}
 
     /**
-     * @param PhotoCollection $photos\
+     * @param Photo\PhotoCollection $photos
      */
     public function display(PhotoCollection $photos) {
 

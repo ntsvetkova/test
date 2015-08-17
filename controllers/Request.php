@@ -56,9 +56,9 @@ class Request implements RequestInterface
      */
     public function sendRequest($strReq) {
         $req = curl_init($strReq);
-        curl_setopt($req, CURLOPT_RETURNTRANSFER, 1);   // CURLOPT_RETURNTRANSFER - returns a string instead of direct output
-        $data = substr(curl_exec($req), 14, -1);    // cutting jsonFlickrApi()
-        $obj = json_decode($data);  //converts a JSON encoded string into a PHP variable
+        curl_setopt($req, CURLOPT_RETURNTRANSFER, 1);
+        $data = substr(curl_exec($req), 14, -1);
+        $obj = json_decode($data);
 
         switch (json_last_error()) {
             case JSON_ERROR_DEPTH:
@@ -80,12 +80,13 @@ class Request implements RequestInterface
                 break;
         }
 
-        curl_close($req);   // close a cURL session
+        curl_close($req);
 
         try {
             if (property_exists($obj, "photos")) {
                 $this->arrPhotos = new PhotoCollection();
                 for ($i = 0; $i < count($obj->photos->photo); $i++) {
+//                    $this->photo = PhotoFactory::create("flickr");
                     $this->photo = new FlickrPhoto($obj->photos->photo[$i]->id, $obj->photos->photo[$i]->owner, $obj->photos->photo[$i]->title);
                     $this->buildRequest("flickr.photos.getSizes", "photo_id", $this->photo->getId());
                 }
