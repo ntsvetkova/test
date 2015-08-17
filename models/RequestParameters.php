@@ -14,6 +14,9 @@ class RequestParameters implements RequestParametersInterface
 
     private function __construct() {}
 
+    /**
+     * @return mixed
+     */
     public static function getInstance() {
         if (empty(self::$instance)) {
             $classname = __CLASS__;
