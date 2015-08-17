@@ -1,4 +1,5 @@
 <?php
+namespace Test;
 
 require_once 'Photo.php';
 require_once 'Titled.php';

@@ -1,4 +1,6 @@
 <?php
+namespace Test;
+//use Test\Photo;
 
 require_once 'RequestInterface.php';
 require_once '../models/FlickrPhoto.php';

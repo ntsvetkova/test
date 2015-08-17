@@ -1,4 +1,5 @@
 <?php
+namespace Test;
 
 interface RequestParametersInterface
 {

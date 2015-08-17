@@ -1,4 +1,6 @@
 <?php
+namespace Test;
+
 require_once 'RequestParametersInterface.php';
 
 /**

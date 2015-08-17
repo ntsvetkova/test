@@ -1,4 +1,5 @@
 <?php
+namespace Test;
 
 require_once '../settings.php';
 require_once '../controllers/Request.php';
