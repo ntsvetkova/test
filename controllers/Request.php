@@ -2,11 +2,12 @@
 namespace Test;
 
 require_once 'RequestInterface.php';
-require_once '../models/FlickrPhoto.php';
-require_once '../models/RequestParameters.php';
-require_once '../models/PhotoCollection.php';
-require_once '../view/Display.php';
-require_once '../models/FlickrException.php';
+require_once '/var/www/main/test.com/web/models/FlickrPhoto.php';
+require_once '/var/www/main/test.com/web/models/RequestParameters.php';
+require_once '/var/www/main/test.com/web/models/PhotoCollection.php';
+require_once '/var/www/main/test.com/web/view/Display.php';
+require_once '/var/www/main/test.com/web/models/FlickrException.php';
+require_once '/var/www/main/test.com/web/models/PhotoFactory.php';
 
 /**
  * Constants for json_last_error()

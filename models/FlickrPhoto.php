@@ -21,18 +21,6 @@ class FlickrPhoto extends Photo
      * @var string
      */
     protected $owner;
-    /**
-     * @var string
-     */
-    protected $title;
-    /**
-     * @var string
-     */
-    protected $srcThumbnail;
-    /**
-     * @var string
-     */
-    protected $srcLarge;
 
     /**
      * @param $id

@@ -1,8 +1,8 @@
 <?php
 namespace Test;
 
-require_once '../settings.php';
-require_once '../controllers/Request.php';
+require_once '/var/www/main/test.com/web/settings.php';
+require_once '/var/www/main/test.com/web/controllers/Request.php';
 require_once 'OpenTemplate.php';
 
 /**

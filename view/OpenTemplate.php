@@ -1,8 +1,8 @@
 <?php
 namespace Test;
 
-require_once '../settings.php';
-require_once '../models/TemplateLoadingException.php';
+require_once '/var/www/main/test.com/web/settings.php';
+require_once '/var/www/main/test.com/web/models/TemplateLoadingException.php';
 
 /**
  * Class OpenTemplate
