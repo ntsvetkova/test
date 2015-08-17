@@ -7,11 +7,26 @@ require_once 'RequestParametersInterface.php';
 class RequestParameters implements RequestParametersInterface
 {
 
+    /**
+     * @var string
+     */
     private $endPoint = "https://api.flickr.com/services/rest/";
+    /**
+     * @var string
+     */
     private $apiKey = "3bd97586d21ffcffe1931f53c2883652";
+    /**
+     * @var string
+     */
     private $format = "json";
+    /**
+     * @var
+     */
     private static $instance;
 
+    /**
+     * Constructor
+     */
     private function __construct() {}
 
     /**

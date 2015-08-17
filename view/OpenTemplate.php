@@ -8,8 +8,17 @@ require_once '../settings.php';
 class OpenTemplate
 {
 
+    /**
+     * @var string
+     */
     private static $source = CONTENTS_TPL;
+    /**
+     * @var string
+     */
     private $tpl;
+    /**
+     * @var
+     */
     private static $instance;
 
     /**

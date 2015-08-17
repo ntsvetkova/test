@@ -10,6 +10,9 @@ require_once 'OpenTemplate.php';
 class Display
 {
 
+    /**
+     * Constructor
+     */
     public function __construct() {}
 
     /**

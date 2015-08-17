@@ -5,6 +5,9 @@
  */
 trait Titled
 {
+    /**
+     * @var
+     */
     protected $title;
 
     /**
@@ -20,4 +23,5 @@ trait Titled
     public function setTitle($title) {
         $this->title = 'Title:' . $title;
     }
+
 }

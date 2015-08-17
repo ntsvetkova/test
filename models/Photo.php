@@ -5,7 +5,13 @@
  */
 class Photo
 {
+    /**
+     * @var string
+     */
     protected $srcLarge;
+    /**
+     * @var string
+     */
     protected $srcThumbnail;
 
     /**

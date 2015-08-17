@@ -11,10 +11,25 @@ class FlickrPhoto extends Photo
 
     use Titled;
 
+    /**
+     * @var
+     */
     protected $id;
+    /**
+     * @var
+     */
     protected $owner;
+    /**
+     * @var
+     */
     protected $title;
+    /**
+     * @var string
+     */
     protected $srcThumbnail;
+    /**
+     * @var string
+     */
     protected $srcLarge;
 
     /**

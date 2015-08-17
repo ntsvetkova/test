@@ -21,8 +21,17 @@ define("ERROR_UTF8", "UTF8 error");
 class Request implements RequestInterface
 {
 
+    /**
+     * @var string
+     */
     public $strReq = "";
+    /**
+     * @var FlickrPhoto
+     */
     public $photo;
+    /**
+     * @var PhotoCollection
+     */
     public $arrPhotos;
 
     /**
