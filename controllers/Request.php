@@ -4,6 +4,7 @@ require_once 'RequestInterface.php';
 require_once '../models/FlickrPhoto.php';
 require_once '../models/RequestParameters.php';
 require_once '../models/PhotoCollection.php';
+require_once '../view/Display.php';
 
 /**
  * Constants for json_last_error()
@@ -32,7 +33,6 @@ class Request implements RequestInterface
     public function buildRequest($method, $paramName, $paramValue) {
         $request = RequestParameters::getInstance();
         $strReq = $request->getEndPoint() . "?method=" . urlencode($method) . "&format=" . $request->getFormat() . "&api_key=" . $request->getApiKey() . "&" . urlencode($paramName) . "=" . urlencode($paramValue);
-//            var_dump($strReq);
         $this->sendRequest($strReq);
     }
 
@@ -66,7 +66,6 @@ class Request implements RequestInterface
                 break;
         }
 
-        //    var_dump($obj);     // NOT NECESSARY
         curl_close($req);   // close a cURL session
 
         if (property_exists($obj, "photos")) {
@@ -75,8 +74,8 @@ class Request implements RequestInterface
                 $this->photo = new FlickrPhoto($obj->photos->photo[$i]->id, $obj->photos->photo[$i]->owner, $obj->photos->photo[$i]->title);
                 $this->buildRequest("flickr.photos.getSizes", "photo_id", $this->photo->getId());
             }
-//            var_dump($this->arrPhotos);
-            display($this->arrPhotos);
+            $display = new Display($this->arrPhotos);
+            $display->display($this->arrPhotos);
         }
         else if (property_exists($obj, "sizes")) {
             $this->photo->setSrcLarge($obj->sizes->size[count($obj->sizes->size) - 1]->source);
@@ -86,35 +85,11 @@ class Request implements RequestInterface
                 }
             }
             $this->arrPhotos->add($this->photo);
-
         }
         else {
             echo "Unknown API method";
         }
 
     }
-
-    /**
-     * @param FlickrPhoto $photo
-     * @throws Exception
-     */
-//    public function display(FlickrPhoto $photo) {
-//        echo "<div class='cell'>
-//                <a class='large' href='" . $photo->getSrcLarge() . "'>
-//                    <div class='img' style='background-image:url(" . $photo->getSrcThumbnail() . ");'></div>
-//                    <div class='title'>" .  $photo->getTitle() . "</div>
-//                </a>
-//                <a id='arrow' target='_blank' href='http://www.flickr.com/photos/" . urlencode($photo->getOwner()) . "/" . urlencode($photo->getId()) . "'> » </a>
-//                <div class='clearfix'></div>
-//              </div>";
-        /*   throw new Exception('!');
-           try {
-
-           }
-           catch (Exception $e) {
-               echo $e->getMessage();
-           } */
-        //    var_dump($photo);
-//    }
 
 }
