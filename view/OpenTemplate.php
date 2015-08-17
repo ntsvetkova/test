@@ -24,18 +24,10 @@ class OpenTemplate
     private static $instance;
 
     /**
-     * @throws \Exception
+     * @throws ErrorException
      */
     private function __construct() {
-        if (!file_get_contents(self::$source)) {
-            throw new \Exception('Template can not be opened');
-        }
-        try {
-            $this->tpl = file_get_contents(self::$source);
-        }
-        catch (\Exception $e) {
-            echo $e->getMessage();
-        }
+        $this->tpl = file_get_contents(self::$source);
     }
 
     /**
