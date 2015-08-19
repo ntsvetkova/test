@@ -10,7 +10,7 @@ class PhotoCollection
     /**
      * @var array
      */
-    public $items = [];
+    private $items = [];
     /**
      * @var int
      */
@@ -21,6 +21,20 @@ class PhotoCollection
      */
     public function add(FlickrPhoto $value) {
         $this->items[$this->count++] = $value;
+    }
+
+    /**
+     * @return array
+     */
+    public function getItems() {
+        return $this->items;
+    }
+
+    /**
+     * @param $arr array
+     */
+    public function addItems($arr) {
+        $this->items = $arr;
     }
 
 }

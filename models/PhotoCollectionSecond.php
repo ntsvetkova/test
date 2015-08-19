@@ -7,6 +7,10 @@ namespace TestSecond;
  */
 class PhotoCollection extends \Test\PhotoCollection
 {
+    /**
+     * @var array
+     */
+    private $items = [];
 
     /**
      * @var int
@@ -18,6 +22,13 @@ class PhotoCollection extends \Test\PhotoCollection
      */
     public function add(FlickrPhoto $value) {
         $this->items[$this->count++] = $value;
+    }
+
+    /**
+     * @return array
+     */
+    public function getItems() {
+        return $this->items;
     }
 
 }

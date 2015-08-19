@@ -11,7 +11,7 @@ require_once __DIR__ . '/../models/PhotoCollection.php';
 require_once __DIR__ . '/../models/FlickrPhotoSecond.php';
 require_once __DIR__ . '/../models/PhotoCollectionSecond.php';
 require_once __DIR__ . '/../models/FlickrException.php';
-require_once __DIR__ . '/../models/PhotoFactory.php';
+require_once __DIR__ . '/../models/TitlesEdit.php';
 require_once __DIR__ . '/../view/Display.php';
 require_once __DIR__ . '/../view/DisplaySecond.php';
 
@@ -69,6 +69,8 @@ class Request implements RequestInterface
      * @return mixed
      */
     public function sendRequest($strReq) {
+        $errors = unserialize(ERROR_MESSAGE);
+
         $req = CurlInit::getInstance();
         $handle = $req->getHandle();
         $options = [
@@ -86,7 +88,6 @@ class Request implements RequestInterface
 
             $obj = json_decode($data);
 
-            $errors = unserialize(ERROR_MESSAGE);
             switch (json_last_error()) {
                 case JSON_ERROR_DEPTH:
                     echo $errors[JSON_ERROR_DEPTH];
@@ -111,13 +112,21 @@ class Request implements RequestInterface
                 if (property_exists($obj, "photos")) {
                     $this->arrPhotos = new PhotoCollection();
                     for ($i = 0; $i < count($obj->photos->photo); $i++) {
-//                    $this->photo = PhotoFactory::create("flickr");
                         $this->photo = new FlickrPhoto($obj->photos->photo[$i]->id, $obj->photos->photo[$i]->owner, $obj->photos->photo[$i]->title);
                         $this->buildRequest("flickr.photos.getSizes", "photo_id", $this->photo->getId());
                     }
                     $display = new Display();
                     $display->display($this->arrPhotos);
 
+                    /**
+                     * @todo Closure
+                     */
+                    $arrTitles = new TitlesEdit($this->arrPhotos);
+                    $display->displayTitlesList($arrTitles);
+
+                    /**
+                     * @todo Example of namespaces conflict
+                     */
                     $this->photoSecond = new TestSecond\FlickrPhoto();
                     $this->photoSecond->setTitle('Second Photo');
                     $this->photoSecond->setSrcLarge('https://farm1.staticflickr.com/744/20679448445_71662dc34b_o.jpg');
@@ -154,8 +163,6 @@ class Request implements RequestInterface
         catch (AppException $e) {
              echo $e;
         }
-
-        curl_close($req);
 
     }
 

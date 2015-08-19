@@ -41,4 +41,11 @@ class CurlInit
         return $this->handle;
     }
 
+    /**
+     * Destructor
+     */
+    public function __destructor() {
+        curl_close($this->handle);
+    }
+
 }

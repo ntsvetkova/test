@@ -1,7 +1,7 @@
 <?php
 namespace Test;
 
-require_once __DIR__ . '/settings.php';
+require_once getcwd() . '/settings.php';
 include_once HEADER_TPL;
 
 require_once __DIR__ . '/controllers/Request.php';
