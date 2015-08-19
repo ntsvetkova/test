@@ -124,6 +124,14 @@ class Request implements RequestInterface
                     $arrTitles = new TitlesEdit($this->arrPhotos);
                     $display->displayTitlesList($arrTitles);
 
+//                    $id = function(FlickrPhoto $photo) {
+//                        return $photo->id;
+//                    };
+//                    $id = \Closure::bind($id, null, $this->photo);
+//                    $id = $id->bind($id, null, $this->photo);
+//                    $id = $id->bindTo(null, $this->photo);
+//                    var_dump($id($this->photo));
+
                     /**
                      * @todo Example of namespaces conflict
                      */
