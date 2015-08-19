@@ -1,8 +1,8 @@
 <?php
 namespace Test;
 
-require_once 'Photo.php';
-require_once 'Titled.php';
+require_once __DIR__ . '/Photo.php';
+require_once __DIR__ . '/Titled.php';
 
 /**
  * Class FlickrPhoto

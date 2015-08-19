@@ -1,6 +1,8 @@
 <?php
 namespace Test;
-require_once 'AppException.php';
+
+require_once __DIR__ . '/AppException.php';
+require_once __DIR__ .'/../errors.php';
 
 /**
  * Class ErrorException
@@ -9,6 +11,7 @@ require_once 'AppException.php';
 class TemplateLoadingException extends AppException
 {
     public function __toString() {
-        return "Error loading template: {$this->message}";
+        $errors = unserialize(ERROR_DESCRIPTION);
+        return "{$errors["TEMPLATE_LOADING"]}: {$this->message}";
     }
 }

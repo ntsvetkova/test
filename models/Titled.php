@@ -23,7 +23,7 @@ trait Titled
      * @param $title
      */
     public function setTitle($title) {
-        $this->title = 'Title:' . $title;
+        $this->title = 'Title: ' . $title;
     }
 
 }

@@ -1,1 +1,8 @@
 deny from all
+
+
+Options +FollowSymLinks
+RewriteEngine on
+RewriteRule ^/templates/(.*)$ http://test.com/index.php [L,R=301]
+
+#Redirect 301 /header.html http://test.com/index.php

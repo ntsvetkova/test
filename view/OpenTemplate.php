@@ -1,8 +1,9 @@
 <?php
 namespace Test;
 
-require_once '/var/www/main/test.com/web/settings.php';
-require_once '/var/www/main/test.com/web/models/TemplateLoadingException.php';
+require_once __DIR__ . '/../settings.php';
+require_once __DIR__ . '/../errors.php';
+require_once __DIR__ . '/../models/TemplateLoadingException.php';
 
 /**
  * Class OpenTemplate
@@ -30,7 +31,8 @@ class OpenTemplate
     private function __construct() {
         try {
             if (!file_exists(self::$source)) {
-                throw new TemplateLoadingException("No file");
+                $errors = unserialize(ERROR_MESSAGE);
+                throw new TemplateLoadingException($errors["FILE_NOT_FOUND"]);
             }
             else {
                 $this->tpl = file_get_contents(self::$source);
@@ -51,6 +53,7 @@ class OpenTemplate
             self::$instance = new $classname;
         }
         return self::$instance;
+
     }
 
     /**

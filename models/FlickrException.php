@@ -1,7 +1,8 @@
 <?php
 namespace Test;
 
-require_once 'AppException.php';
+require_once __DIR__ . '/AppException.php';
+require_once __DIR__ . '/../errors.php';
 
 /**
  * Class FlickrException
@@ -13,7 +14,10 @@ class FlickrException extends AppException
      * @return string
      */
     public function __toString() {
-        return "Flickr API error: {$this->message}";
+//        return parent::__toString();
+//        return \Exception::__toString();
+        $errors = unserialize(ERROR_DESCRIPTION);
+        return "{$errors["FLICKR_API"]}: {$this->message}";
     }
 
 }

@@ -1,7 +1,7 @@
 <?php
 namespace Test;
 
-require_once 'RequestParametersInterface.php';
+require_once __DIR__ . '/RequestParametersInterface.php';
 
 /**
  * Class RequestParameters
