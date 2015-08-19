@@ -1,2 +1,3 @@
 #deny from all
 
+RedirectMatch 301 ^/(.*)\.html$ http://test.com
