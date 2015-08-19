@@ -1,0 +1,8 @@
+RemoveHandler .html .htm
+AddType application/x-httpd-php .php .htm .html
+
+<Files "settings.php">
+    deny from all
+</Files>
+
+RedirectMatch 301 ^/templates(.*)\.html$ http://test.com
