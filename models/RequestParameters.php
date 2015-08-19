@@ -64,4 +64,12 @@ class RequestParameters implements RequestParametersInterface
         return $this->apiKey;
     }
 
+    /**
+     * @param $endPoint
+     * @return string
+     */
+//    public function __get($endPoint) {
+//        return $this->endPoint;
+//    }
+
 }
