@@ -86,22 +86,22 @@ class Request implements RequestInterface
 
             $obj = json_decode($data);
 
-            $jsonErrors = unserialize(ERROR_MESSAGE);
+            $errors = unserialize(ERROR_MESSAGE);
             switch (json_last_error()) {
                 case JSON_ERROR_DEPTH:
-                    echo $jsonErrors[JSON_ERROR_DEPTH];
+                    echo $errors[JSON_ERROR_DEPTH];
                     break;
                 case JSON_ERROR_STATE_MISMATCH:
-                    echo $jsonErrors[JSON_ERROR_STATE_MISMATCH];
+                    echo $errors[JSON_ERROR_STATE_MISMATCH];
                     break;
                 case JSON_ERROR_CTRL_CHAR:
-                    echo $jsonErrors[JSON_ERROR_CTRL_CHAR];
+                    echo $errors[JSON_ERROR_CTRL_CHAR];
                     break;
                 case JSON_ERROR_SYNTAX:
-                    echo $jsonErrors[JSON_ERROR_SYNTAX];
+                    echo $errors[JSON_ERROR_SYNTAX];
                     break;
                 case JSON_ERROR_UTF8:
-                    echo $jsonErrors[JSON_ERROR_UTF8];
+                    echo $errors[JSON_ERROR_UTF8];
                     break;
                 default:
                     break;
@@ -141,13 +141,15 @@ class Request implements RequestInterface
                     throw new FlickrException($obj->message);
                 }
                 else {
-                    echo "This app can not work with this API method";
+                    throw new AppException($errors["NO_METHOD"]);
                 }
             }
             catch (FlickrException $e) {
                 echo $e;
             }
-
+            catch (\Exception $e) {
+                echo $e;
+            }
         }
         catch (AppException $e) {
              echo $e;
