@@ -21,6 +21,9 @@ class TitlesEdit
         }
         $date = new \DateTime();
         $writeTitles = function($oldTitle) use ($date) {
+            if (empty($oldTitle)) {
+                $oldTitle = "No title";
+            }
             return $date->format('Y-m-d') . ': ' . $oldTitle;
         };
         $this->arrTitles = array_map($writeTitles, $this->arrTitles);
