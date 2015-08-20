@@ -1,6 +1,8 @@
 <?php
 namespace Test;
-use TestSecond;
+use TestSecond\FlickrPhoto as Photo;
+use TestSecond\PhotoCollection as Collection;
+use TestSecond\Display as Disp;
 
 require_once __DIR__ . '/../errors.php';
 require_once __DIR__ . '/RequestInterface.php';
@@ -14,6 +16,7 @@ require_once __DIR__ . '/../models/FlickrException.php';
 require_once __DIR__ . '/../models/TitlesEdit.php';
 require_once __DIR__ . '/../view/Display.php';
 require_once __DIR__ . '/../view/DisplaySecond.php';
+
 
 /**
  * Constants for json_last_error()
@@ -44,11 +47,11 @@ class Request implements RequestInterface
      */
     public $arrPhotos;
     /**
-     * @var TestSecond\FlickrPhoto
+     * @var Photo
      */
     public $photoSecond;
     /**
-     * @var TestSecond\PhotoCollection
+     * @var Photo
      */
     public $arrPhotosSecond;
 
@@ -124,6 +127,19 @@ class Request implements RequestInterface
                     $arrTitles = new TitlesEdit($this->arrPhotos);
                     $display->displayTitlesList($arrTitles);
 
+                    /**
+                     * @todo Reflection: access protected property
+                     */
+//                    $reflectionClass = new \ReflectionClass($this->photo);
+//                    $id = $reflectionClass->getProperty('id');
+//                    if ($id->isProtected() || $id->isPrivate()) {
+//                        $id->setAccessible(true);
+//                    }
+//                    var_dump($id->getValue($this->photo));
+
+                    /**
+                     * @todo Closure: access protected property
+                     */
 //                    $id = function(FlickrPhoto $photo) {
 //                        return $photo->id;
 //                    };
@@ -135,13 +151,13 @@ class Request implements RequestInterface
                     /**
                      * @todo Example of namespaces conflict
                      */
-                    $this->photoSecond = new TestSecond\FlickrPhoto();
+                    $this->photoSecond = new Photo();
                     $this->photoSecond->setTitle('Second Photo');
                     $this->photoSecond->setSrcLarge('https://farm1.staticflickr.com/744/20679448445_71662dc34b_o.jpg');
                     $this->photoSecond->setSrcThumbnail('https://farm1.staticflickr.com/744/20679448445_5c59945ece_t.jpg');
-                    $this->arrPhotosSecond = new TestSecond\PhotoCollection();
+                    $this->arrPhotosSecond = new Collection();
                     $this->arrPhotosSecond->add($this->photoSecond);
-                    $displaySecond = new TestSecond\Display();
+                    $displaySecond = new Disp();
                     $displaySecond->display($this->arrPhotosSecond);
 
                 }
