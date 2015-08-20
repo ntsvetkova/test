@@ -24,7 +24,7 @@ class TitlesEdit
             if (empty($oldTitle)) {
                 $oldTitle = "No title";
             }
-            return $date->format('Y-m-d') . ': ' . $oldTitle;
+            return $date->format('Y-m-d, l, H:i:s') . ': ' . $oldTitle;
         };
         $this->arrTitles = array_map($writeTitles, $this->arrTitles);
     }

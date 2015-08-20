@@ -65,6 +65,11 @@ class RequestParameters implements RequestParametersInterface
     }
 
     /**
+     * Restricted to clone
+     */
+    private function __clone() {}
+
+    /**
      * @param $endPoint
      * @return string
      */

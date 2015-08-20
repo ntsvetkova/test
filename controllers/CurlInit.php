@@ -42,6 +42,11 @@ class CurlInit
     }
 
     /**
+     * Restricted to clone
+     */
+    private function __clone() {}
+
+    /**
      * Destructor
      */
     public function __destructor() {

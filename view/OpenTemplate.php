@@ -57,6 +57,11 @@ class OpenTemplate
     }
 
     /**
+     * Restricted to clone
+     */
+    private function __clone() {}
+
+    /**
      * @return string
      */
     public function getTemplate() {

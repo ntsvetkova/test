@@ -68,4 +68,11 @@ class FlickrPhoto extends Photo
         $this->title = $title;
     }
 
+    /**
+     * Clone
+     */
+//    public function __clone() {
+//        $this->setId($this->getId() . ": clone");
+//    }
+
 }
