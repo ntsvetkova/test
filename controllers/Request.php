@@ -124,8 +124,8 @@ class Request implements RequestInterface
                     /**
                      * @todo Closure
                      */
-                    $arrTitles = new TitlesEdit($this->arrPhotos);
-                    $display->displayTitlesList($arrTitles);
+//                    $arrTitles = new TitlesEdit($this->arrPhotos);
+//                    $display->displayTitlesList($arrTitles);
 
                     /**
                      * @todo Reflection: access protected property
